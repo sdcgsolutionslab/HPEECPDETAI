@@ -1,0 +1,3 @@
+bind_mounts:
+  - host_path: /bd-fs-mnt/TenantShare/repo
+    container_path: /data

@@ -1,0 +1,19 @@
+name: iris_distri_Student{{ STDID }}
+hyperparameters:
+  learning_rate: 1.0e-4
+  learning_rate_decay: 1.0e-6
+  layer1_dense_size: 16
+  global_batch_size: 30
+resources:
+  slots_per_trial: 2 # Use 2 GPUs to train the model.
+searcher:
+  name: single
+  metric: val_categorical_accuracy
+  smaller_is_better: false
+  max_length:
+    batches: 2500
+entrypoint: model_def:IrisTrial
+bind_mounts:
+  - host_path: /bd-fs-mnt/TenantShare/repo
+    container_path: /data
+    read_only: true
